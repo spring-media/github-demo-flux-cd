@@ -1,0 +1,42 @@
+name: Create Phoenix
+
+on:
+  workflow_dispatch:
+    inputs:
+      phoenixName:
+        description: 'The name of the phoenix environment to create'
+        required: true
+      projectName:
+        description: 'The name of the changed project the phoenix environment'
+        required: true
+      gitHash:
+        description: ''
+        required: true
+
+jobs:
+  create_phoenix:
+    name: Create a phoenix environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Event Information
+        run: echo "Create a Phoenix Environment with the name '${{ github.event.inputs.phoenixName }}' for project '${{ github.event.inputs.projectName }}'"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create or Update Phoenix
+        run: ./scripts/createPhoenix.sh
+        env:
+          PHOENIX_NAME: ${{ github.event.inputs.phoenixName }}
+          PROJECT_NAME: ${{ github.event.inputs.projectName }}
+          GITHASH: ${{ github.event.inputs.gitHash }}
+          
+      - name: Push changes for Phoenix Env
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.TECH_MEDIASITES_GITHUB_TOKEN }}
+          push-branch: master
+          commit-message: 'Phoenix ${{ github.event.inputs.phoenixName }} created or updated'
+          rebase: 'true' # pull and rebase before commit
+          name: 'github-demo-flux-cd phoenix creator'
+          email: noreply@mediasites.spring-media.de

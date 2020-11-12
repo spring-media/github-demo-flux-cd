@@ -1,0 +1,39 @@
+name: Destroy Phoenix
+
+on:
+  workflow_dispatch:
+    inputs:
+      phoenixName:
+        description: 'The name of the phoenix environment to destroy'
+        required: true
+      projectName:
+        description: 'The name of the changed project in phoenix environment'
+        required: true
+
+jobs:
+  create_phoenix:
+    name: Destroy a phoenix environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Event Information
+        run: |
+          echo "Destroy the Phoenix Environment with the name '${{ github.event.inputs.phoenixName }} for project '${{ github.event.inputs.projectName }}'"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Destroy Phoenix
+        run: ./scripts/destroyPhoenix.sh
+        env:
+          PHOENIX_NAME: ${{ github.event.inputs.phoenixName }}
+          PROJECT_NAME: ${{ github.event.inputs.projectName }}
+
+      - name: Push changes for phoenix destruction
+        uses: github-actions-x/commit@v2.6
+        with:
+          github-token: ${{ secrets.TECH_MEDIASITES_GITHUB_TOKEN }}
+          push-branch: master
+          commit-message: 'Phoenix ${{ github.event.inputs.phoenixName }} destroyed'
+          rebase: 'true' # pull and rebase before commit
+          name: 'ms-flux-cd phoenix destroyer'
+          email: noreply@mediasites.spring-media.de
