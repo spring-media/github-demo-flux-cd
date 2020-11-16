@@ -35,7 +35,7 @@ jobs:
         uses: github-actions-x/commit@v2.6
         with:
           github-token: ${{ secrets.DEMO_GITHUB_TOKEN }}
-          push-branch: master
+          push-branch: main
           commit-message: 'Phoenix ${{ github.event.inputs.phoenixName }} created or updated'
           rebase: 'true' # pull and rebase before commit
           name: 'github-demo-flux-cd phoenix creator'

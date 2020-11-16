@@ -5,7 +5,7 @@ sudo snap install yq
 ## copy the project folder for the phoenix env from STG
 echo "PROJECT_NAME: ${PROJECT_NAME}"
 echo "PHOENIX_NAME: ${PHOENIX_NAME}"
-cp -Rv stg/${PROJECT_NAME}/ stg/${PROJECT_NAME}-${PHOENIX_NAME}/
+cp -Rv prd/${PROJECT_NAME}/ stg/${PROJECT_NAME}-${PHOENIX_NAME}/
 
 ## run yq to replace namespace
 yq write -i stg/${PROJECT_NAME}-${PHOENIX_NAME}/namespace.yaml 'metadata.name' ${PROJECT_NAME}-${PHOENIX_NAME}
