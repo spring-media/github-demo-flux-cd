@@ -1,5 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: github-demo
-  namespace: github-demo-bugfix-abc-10
