@@ -19,11 +19,11 @@ spec:
     git: git@github.com:spring-media/github-demo.git
     path: chart/github-demo
     ref: main
-  
+
   values:
-    image: ghcr.io/spring-media/github-demo/universe-2020-demo:3a2cf8c
+    image: ghcr.io/spring-media/github-demo/universe-2020-demo:d6bbee0
 
     url:
-      - github-demo.prod.mediasites.springtools.de
-      - github-demo.books-1.prod.euw1.mediasites.springtools.de
-      - github-demo.books-2.prod.euw1.mediasites.springtools.de
+    - github-demo.prod.mediasites.springtools.de
+    - github-demo.books-1.prod.euw1.mediasites.springtools.de
+    - github-demo.books-2.prod.euw1.mediasites.springtools.de
