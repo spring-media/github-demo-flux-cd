@@ -31,7 +31,7 @@ jobs:
       - name: Push changes for phoenix destruction
         uses: github-actions-x/commit@v2.6
         with:
-          github-token: ${{ secrets.TECH_MEDIASITES_GITHUB_TOKEN }}
+          github-token: ${{ secrets.DEMO_GITHUB_TOKEN }}
           push-branch: master
           commit-message: 'Phoenix ${{ github.event.inputs.phoenixName }} destroyed'
           rebase: 'true' # pull and rebase before commit
