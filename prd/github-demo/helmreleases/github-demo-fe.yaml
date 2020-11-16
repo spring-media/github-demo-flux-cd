@@ -7,7 +7,7 @@ metadata:
   namespace: github-demo
   annotations:
     flux.weave.works/automated: "true"
-    filter.fluxcd.io/chart-image: glob:*
+    filter.fluxcd.io/chart-image: glob:main-*
 
 spec:
   wait: true
