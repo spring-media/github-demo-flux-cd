@@ -1,0 +1,27 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: github-demo-fe
+  namespace: github-demo-bugfix-abc-21
+  annotations:
+    flux.weave.works/automated: "true"
+    filter.fluxcd.io/chart-image: glob:bugfix-abc-21-*
+spec:
+  wait: true
+  timeout: 600
+  resetValues: true
+  forceUpgrade: true
+  releaseName: github-demo-fe
+  chart:
+    git: git@github.com:spring-media/github-demo.git
+    path: chart/github-demo
+    ref: main
+  values:
+    image: ghcr.io/spring-media/github-demo/universe-2020-demo:bugfix-abc-21-7ecfdd4
+    url:
+      - github-demo-bugfix-abc-21.test.mediasites.springtools.de
+      - github-demo-bugfix-abc-21.books-1.test.euw1.mediasites.springtools.de
+      - github-demo-bugfix-abc-21.books-2.test.euw1.mediasites.springtools.de
+    replicaCount: '1'
+    cronjobs:
+      active: false
