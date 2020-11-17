@@ -1,0 +1,27 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: github-demo-fe
+  namespace: github-demo-abc-12-description
+  annotations:
+    flux.weave.works/automated: "true"
+    filter.fluxcd.io/chart-image: glob:abc-12-description-*
+spec:
+  wait: true
+  timeout: 600
+  resetValues: true
+  forceUpgrade: true
+  releaseName: github-demo-fe
+  chart:
+    git: git@github.com:spring-media/github-demo.git
+    path: chart/github-demo
+    ref: main
+  values:
+    image: ghcr.io/spring-media/github-demo/universe-2020-demo:abc-12-description-f343a0a
+    url:
+      - github-demo-abc-12-description.test.mediasites.springtools.de
+      - github-demo-abc-12-description.books-1.test.euw1.mediasites.springtools.de
+      - github-demo-abc-12-description.books-2.test.euw1.mediasites.springtools.de
+    replicaCount: '1'
+    cronjobs:
+      active: false
