@@ -14,7 +14,6 @@ spec:
   timeout: 600
   resetValues: true
   forceUpgrade: true
-  releaseName: github-demo-fe
   chart:
     git: git@github.com:spring-media/github-demo.git
     path: chart/github-demo
