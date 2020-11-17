@@ -20,7 +20,7 @@ for f in $(find stg/${PROJECT_NAME}-${PHOENIX_NAME}/helmreleases -name '*.yaml')
 
   LENGTH=$(yq read $f --length 'spec.values.url')
   for (( i=0; i<$LENGTH; i++ )) ; do
-    yq read $f "spec.values.url[$i]" | sed "0,/\./s//-${PHOENIX_NAME}./" | xargs -I '{}' yq write -i $f "spec.values.url[$i]" {}
+    yq read $f "spec.values.url[$i]" | sed "0,/\./s//-${PHOENIX_NAME}./" | sed 's/.prod./.test./g' | xargs -I '{}' yq write -i $f "spec.values.url[$i]" {}
   done
 
   yq read $f 'spec.values.wordpress.origin' | sed "0,/\./s//-${PHOENIX_NAME}./" | xargs -I '{}' yq write -i $f 'spec.values.wordpress.origin' {}
