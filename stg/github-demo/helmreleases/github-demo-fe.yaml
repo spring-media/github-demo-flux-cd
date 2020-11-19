@@ -20,7 +20,7 @@ spec:
     ref: main
 
   values:
-    image: ghcr.io/spring-media/github-demo/universe-2020-demo:main-0923b7e
+    image: ghcr.io/spring-media/github-demo/universe-2020-demo:main-6e8faaa
 
     url:
     - github-demo.test.mediasites.springtools.de
