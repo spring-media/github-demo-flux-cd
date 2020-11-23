@@ -1,3 +1,4 @@
+---
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -16,11 +17,11 @@ spec:
     path: chart/github-demo
     ref: main
   values:
-    image: ghcr.io/spring-media/github-demo/universe-2020-demo:bugfix-abc-34-1c87801
+    image: ghcr.io/spring-media/github-demo/universe-2020-demo:bugfix-abc-34-f5e9af9
     url:
-      - github-demo-bugfix-abc-34.test.mediasites.springtools.de
-      - github-demo-bugfix-abc-34.books-1.test.euw1.mediasites.springtools.de
-      - github-demo-bugfix-abc-34.books-2.test.euw1.mediasites.springtools.de
+    - github-demo-bugfix-abc-34.test.mediasites.springtools.de
+    - github-demo-bugfix-abc-34.books-1.test.euw1.mediasites.springtools.de
+    - github-demo-bugfix-abc-34.books-2.test.euw1.mediasites.springtools.de
     replicaCount: '1'
     cronjobs:
       active: false
